@@ -203,7 +203,56 @@ import SwiftUI
 // Exemplo de entrada: 7
 // Saída esperada: 13 (pois o sétimo número da sequência de Fibonacci é 13)
 
+
+//func fibonacci(_ numero:Int) -> Int {
+//    if numero < 0 {
+//        print("Não há soluções reais!")
+//        return 0
+//    } else if numero == 0 || numero == 1 {
+//        return numero
+//    } else {
+//        return fibonacci(numero-1) + fibonacci(numero-2)
+//    }
+//}
 //
+//print(fibonacci(7))
+
 // 5) Escreva uma função chamada "somaDosPrimos" que receba um número inteiro como parâmetro e retorne a soma de todos os números primos menores ou iguais a esse número.
 // Exemplo de entrada: 10
 // Saída esperada: 17 (pois 2 + 3 + 5 + 7 = 17)
+
+
+func somaDosPrimos (_ numero:Int) -> Int {
+    //Aqui vc verifica se a entrada é maior ou igual a 2 utilizando o guard. A função recebe um número inteiro como entrada e retorna a soma de todos os números primos menores ou iguais a esse número.
+//    Para fazer isso, a função começa verificando se o número de entrada é maior ou igual a 2. Isso porque o número 2 é o primeiro número primo, então não faz sentido procurar por números primos menores do que 2.
+    guard numero >= 2 else {
+        return 0
+    }
+    
+    // Agora você define a soma como zero, para ser calculada futuramente com a adição.
+    var soma = 0
+    // Após isso, será necessário iterar (percorrer todos os números) a fim de verificar se o número é primo ou não.
+    for i in 2...numero{
+        var primo = true
+        
+        //Se o número i for divisível por j, isso significa que ele não é primo, pois um número primo é aquele que é divisível apenas por 1 e por ele próprio. Nesse caso, a variável primo é definida como false e o loop é interrompido com o comando break, pois não é necessário continuar testando os números restantes.
+        for j in 2..<i {
+            if i % j == 0 {
+                primo = false
+                break
+            }
+        }
+        //Se o loop terminar sem encontrar nenhum número que divida i sem resto, isso significa que i é primo e a variável primo permanece como true.
+        if primo {
+            soma += i
+            
+        }
+        
+    }
+    //No final do loop, a função retorna a variável soma contendo a soma de todos os números primos menores ou iguais a numero.
+    return soma
+    
+}
+
+var result = somaDosPrimos(5)
+print(result)
